@@ -48,7 +48,7 @@ function answerGame(context, replyFunc) {
                 replyFunc(context, '请准备听题');
                 setTimeout(() => {
                     replyFunc(context, nextQuestion(game));
-                }, 5000);
+                }, 3000);
                 return true;
             }
         }
@@ -66,7 +66,6 @@ function answerGame(context, replyFunc) {
             // 游戏结束
             if (!questions[current + 1]) {
                 game.start = false;
-                replyFunc(context, '游戏结束');
                 replyFunc(context, getScore(score));
             }
             return true;
@@ -78,16 +77,16 @@ function answerGame(context, replyFunc) {
 
 function nextQuestion(game) {
     const q = game.questions[++game.current];
-    let qStr = `问题${game.current + 1}：\n\n${q.question}\n`;
+    let qStr = `问题${game.current + 1}：\n${q.question}\n`;
     q.options.forEach((v, i) => {
-        qStr += `${String.fromCharCode(65 + i)}. ${v}`;
+        qStr += `\n${String.fromCharCode(65 + i)}. ${v}`;
     });
     game.accept = true;
     return qStr;
 }
 
 function getScore(score) {
-    const list = ['得分：'];
+    const list = ['游戏结束，得分：'];
     _.toPairs(score)
         .sort((a, b) => (a[1] == b[1] ? a[0] - b[0] : b[1] - a[1]))
         .forEach(([qq, s]) => {
