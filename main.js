@@ -14,6 +14,7 @@ import Akhr from './modules/plugin/akhr';
 import _ from 'lodash';
 import minimist from 'minimist';
 import { rmdInit, rmdHandler } from './modules/plugin/reminder';
+import answerGame from './modules/plugin/answer-game';
 
 //常量
 const setting = config.picfinder;
@@ -201,6 +202,9 @@ function commonHandle(e, context) {
     if (setting.reminder.enable) {
         if (rmdHandler(context)) return true;
     }
+
+    // 问答游戏
+    if (answerGame(context)) return true;
 
     return false;
 }
