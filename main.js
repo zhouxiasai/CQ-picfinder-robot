@@ -204,7 +204,7 @@ function commonHandle(e, context) {
     }
 
     // 问答游戏
-    if (answerGame(context)) return true;
+    if (answerGame(context, replyMsg)) return true;
 
     return false;
 }
