@@ -8,7 +8,7 @@ function answerGame(context, replyFunc) {
     const { message, group_id, user_id } = context;
     // 创建游戏
     if (message.startsWith('--question=') && message != '--question=') {
-        let json = message.split('--question=')[1];
+        let json = CQ.unescape(message.split('--question=')[1]);
         try {
             json = JSON.parse(json);
             json.start = false;

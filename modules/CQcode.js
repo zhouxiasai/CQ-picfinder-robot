@@ -16,6 +16,16 @@ function escape(str, insideCQ = false) {
 }
 
 /**
+ * 反转义
+ *
+ * @param {string} str 欲反转义的字符串
+ * @returns 反转义后的字符串
+ */
+function unescape(str) {
+    return str.replace(/&amp;/g, '&').replace(/&#([0-9]+);/g, (_, code) => String.fromCharCode(code));
+}
+
+/**
  * CQ码 图片
  *
  * @param {string} file 本地文件路径或URL
@@ -51,6 +61,7 @@ function at(qq) {
 
 export default {
     escape,
+    unescape,
     share,
     img,
     at,
